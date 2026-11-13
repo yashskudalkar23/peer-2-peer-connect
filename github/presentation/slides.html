@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Connect — pitch deck</title>
+<!--
+  ============================================================
+  HOW TO EDIT THIS DECK
+  - Each <section class="slide"> is one slide. Edit the text directly.
+  - Use arrow keys (or on-screen dots) to move between slides.
+  - Press "P" or use your browser's Print -> Save as PDF to export.
+  - The QR image is qr.png in this folder. Replace that file with a
+    QR for your final hosted URL (see make_qr.py) and update the link text.
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#F3F4EE;--surface:#FFFFFF;--tint:#ECEFE4;--ink:#1E2A22;--muted:#6B756A;--line:#E4E7DD;
+    --accent:#2E5D39;--accent-soft:#E3EFE0;--leaf:#7FB83E;--signal:#C98A2B;--signal-soft:#F6EAD4;--success:#2E7D4F;
+    --head:"Poppins",system-ui,sans-serif;--body:"Inter",system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:var(--body);color:var(--ink);background:#0A111B;overflow:hidden;}
+  .deck{width:100vw;height:100vh;position:relative;}
+  .slide{
+    position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
+    padding:7vh 8vw;opacity:0;transition:opacity .35s ease;
+    background:
+      radial-gradient(60% 50% at 10% 5%, rgba(46,93,57,.13), transparent 60%),
+      radial-gradient(55% 45% at 100% 100%, rgba(127,184,62,.18), transparent 55%),
+      var(--bg);
+  }
+  .slide.active{display:flex;opacity:1;}
+  h1{font-family:var(--head);font-weight:700;letter-spacing:-.02em;line-height:1.02;}
+  h2{font-family:var(--head);font-weight:700;letter-spacing:-.01em;}
+  .num{font-family:var(--head);font-weight:700;}
+  .logo{display:flex;align-items:center;gap:14px;}
+  .mark{position:relative;width:62px;height:44px;}
+  .mark i{position:absolute;top:0;width:44px;height:44px;border-radius:50%;mix-blend-mode:multiply;}
+  .mark .c1{left:0;background:var(--accent);} .mark .c2{left:18px;background:var(--leaf);}
+  .word{font-family:var(--head);font-weight:700;font-size:40px;}
+  .pill{display:inline-flex;align-items:center;gap:9px;background:var(--accent-soft);color:var(--accent);
+        font-weight:700;border-radius:999px;padding:9px 18px;font-size:clamp(14px,1.6vw,20px);}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);}
+  .lede{color:var(--muted);line-height:1.45;}
+  .cols{display:flex;gap:5vw;align-items:center;}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:26px;margin-top:4vh;}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 10px 30px rgba(15,27,45,.08);}
+  .card .ico{width:46px;height:46px;border-radius:12px;background:var(--accent-soft);color:var(--accent);
+             display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .card h3{font-family:var(--head);font-size:clamp(18px,2vw,24px);margin-bottom:8px;}
+  .card p{color:var(--muted);font-size:clamp(13px,1.3vw,17px);line-height:1.4;}
+  .phone{border-radius:34px;overflow:hidden;background:#000;box-shadow:0 30px 70px rgba(15,27,45,.3),0 0 0 9px #0F1B2D,0 0 0 11px #243247;}
+  .phone img{display:block;width:100%;}
+  .bul{display:flex;gap:12px;align-items:flex-start;margin-top:18px;}
+  .bul .ck{flex:0 0 auto;color:var(--success);margin-top:2px;}
+  .bul b{font-weight:700;} .bul span{font-size:clamp(15px,1.5vw,20px);}
+  .qrbox{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:28px;display:flex;gap:26px;align-items:center;box-shadow:0 18px 44px rgba(15,27,45,.12);}
+  .qrbox img{width:200px;height:200px;border-radius:12px;}
+  /* nav dots */
+  .dots{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:20;}
+  .dots button{width:11px;height:11px;border-radius:50%;border:none;background:rgba(255,255,255,.35);cursor:pointer;}
+  .dots button.on{background:#fff;width:26px;border-radius:999px;}
+  .hint{position:fixed;bottom:20px;right:24px;color:rgba(255,255,255,.5);font-size:12px;z-index:20;}
+  .foot{position:absolute;bottom:4vh;left:8vw;color:var(--muted);font-weight:600;font-size:14px;}
+  @media print{
+    body{overflow:visible;background:#fff;}
+    .slide{display:flex!important;opacity:1!important;position:relative;inset:auto;height:100vh;page-break-after:always;}
+    .dots,.hint{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- ===== SLIDE 1 — TITLE ===== -->
+  <section class="slide active">
+    <div class="logo" style="margin-bottom:4vh"><span class="mark"><i class="c1"></i><i class="c2"></i></span><span class="word">Connect</span></div>
+    <div class="cols">
+      <div style="flex:1 1 60%">
+        <div class="pill"><span class="dot"></span>Peer mentoring for college students</div>
+        <h1 style="font-size:clamp(40px,6vw,88px);margin-top:3vh">Learn from a student who just got it.</h1>
+        <p class="lede" style="font-size:clamp(17px,2vw,26px);margin-top:3vh;max-width:760px">
+          A student says what they want to learn. Another says what they can teach. Connect matches them on
+          subject, confidence, language, format and shared free days — then supports the whole journey.</p>
+      </div>
+      <div style="flex:0 0 auto;width:300px"><div class="phone"><img src="shot_matches.png" alt="Connect matches screen" /></div></div>
+    </div>
+    <div class="foot">A clickable prototype · built as a working web app</div>
+  </section>
+
+  <!-- ===== SLIDE 2 — HOW IT WORKS ===== -->
+  <section class="slide">
+    <h2 style="font-size:clamp(30px,4.5vw,56px)">How Connect works</h2>
+    <p class="lede" style="font-size:clamp(16px,1.8vw,22px);margin-top:14px;max-width:820px">
+      One short questionnaire drives a real matching engine — and the product is honest when good matches are scarce.</p>
+    <div class="grid3">
+      <div class="card">
+        <div class="ico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3.2"/><circle cx="16" cy="16" r="3.2"/><path d="M10.4 10.4 13.6 13.6"/></svg></div>
+        <h3>Matched, not guessed</h3>
+        <p>Scored on the mentor's proficiency, your shared free days, language and format. Sorted by real fit.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20z"/><path d="M12 9v5M12 17h.01"/></svg></div>
+        <h3>Honest by design</h3>
+        <p>If fewer than three strong mentors qualify, Connect says so — it never pads the list with weak matches.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg></div>
+        <h3>End-to-end support</h3>
+        <p>Requests, chat, scheduled sessions, a shared library and project feedback — all in one flow.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4"/></svg></div>
+        <h3>Transparent credits</h3>
+        <p>Connect Credits record activity clearly and are never presented as official marks. The college decides their worth.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10M17 7l-3-3M17 7l-3 3M17 17H7M7 17l3-3M7 17l3 3"/></svg></div>
+        <h3>Learn and mentor</h3>
+        <p>One account. Switch between learning and mentoring whenever you like — no second sign-up.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Private & safe</h3>
+        <p>You choose who sees your files, report and block tools in every chat, and no sensitive data is required.</p>
+      </div>
+    </div>
+    <div class="foot">6 open product decisions are listed inside the app for the team to settle.</div>
+  </section>
+
+  <!-- ===== SLIDE 3 — TRY IT (QR) ===== -->
+  <section class="slide">
+    <div class="cols">
+      <div style="flex:1 1 55%">
+        <div class="logo" style="margin-bottom:3vh"><span class="mark"><i class="c1"></i><i class="c2"></i></span><span class="word">Connect</span></div>
+        <h1 style="font-size:clamp(34px,5vw,68px)">Try the live demo</h1>
+        <div class="bul"><span class="ck"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span><span>Opens in any phone browser — nothing to install</span></div>
+        <div class="bul"><span class="ck"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span><span>Seeded with sample data — every screen is clickable</span></div>
+        <div class="bul"><span class="ck"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span><span>Tip: pick <b>Public Speaking</b> to see the honest-matching rule</span></div>
+        <div class="qrbox" style="margin-top:4vh;max-width:540px">
+          <img src="qr.png" alt="Scan to open the Connect demo" />
+          <div>
+            <div class="num" style="font-size:clamp(22px,2.4vw,30px)">Scan to open</div>
+            <p class="lede" style="font-size:15px;margin-top:8px;word-break:break-all">yashskudalkar23.github.io/peer-2-peer-connect</p>
+            <p style="font-size:13px;color:var(--accent);font-weight:600;margin-top:6px">Live now · works in any phone browser</p>
+          </div>
+        </div>
+      </div>
+      <div style="flex:0 0 auto;width:280px"><div class="phone"><img src="shot_home.png" alt="Connect home screen" /></div></div>
+    </div>
+  </section>
+
+</div>
+
+<div class="dots" id="dots"></div>
+<div class="hint">← → to navigate · P to print</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var dots = document.getElementById('dots');
+  var i = 0;
+  slides.forEach(function(_, n){
+    var b = document.createElement('button');
+    b.addEventListener('click', function(){ goto(n); });
+    dots.appendChild(b);
+  });
+  function goto(n){
+    i = Math.max(0, Math.min(slides.length-1, n));
+    slides.forEach(function(s,k){ s.classList.toggle('active', k===i); });
+    Array.prototype.forEach.call(dots.children, function(d,k){ d.classList.toggle('on', k===i); });
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'||e.key===' ') goto(i+1);
+    else if(e.key==='ArrowLeft') goto(i-1);
+    else if(e.key.toLowerCase()==='p') window.print();
+  });
+  document.addEventListener('click', function(e){
+    if(e.target.closest('.dots')||e.target.closest('a')) return;
+    goto(i+1);
+  });
+  goto(0);
+})();
+</script>
+</body>
+</html>
